@@ -17,6 +17,8 @@ current_best_lq = 127
 current_best_node = None
 last_best_lq = 127
 show_off = False
+threshhold_lq = 21
+is_friendly = True
 
 @setHook(HOOK_STARTUP)
 def init():
@@ -69,11 +71,14 @@ def do_show_off():
 
 @setHook(HOOK_1S)
 def scan():
-    global just_booted, current_best_lq, last_best_lq, counter_max, current_best_node, show_off
+    global just_booted, current_best_lq, last_best_lq, counter_max, current_best_node, show_off, is_friendly
 
     if just_booted:
         set_random_color()
         just_booted = False
+
+    if not is_friendly:
+        return
 
     if show_off:
         #We are showing off, just clear out our link quality.
@@ -86,7 +91,7 @@ def scan():
             counter_max = 300 #This *10 is how many ms between blinks when there is no one nearby.
     
         #Send my color to the other guy, if we've been consistently close for two cycles.
-        if current_best_lq < 23 and last_best_lq < 23: #We have to beat this LQ to transmit
+        if current_best_lq < threshhold_lq and last_best_lq < threshhold_lq: #We have to beat this LQ to transmit
             rpc(current_best_node, "receive_color", current_red, current_green, current_blue)
             receive_color(current_red, current_green, current_blue)
 
@@ -104,10 +109,21 @@ def receive():
 
 def receive_color(r, g, b):
     global counter_max, show_off
-    set_color(r, g, b)
-    counter_max = 5 #Increase this to decrease the amount of time it's solid after a transmit
-    show_off = True
+    if not show_off: #Don't do it if we're not already doing it - this may not be desirable though
+        set_color(r, g, b)
+        counter_max = 5 #Increase this to decrease the amount of time it's solid after a transmit
+        show_off = True
     
+def set_threshhold_lq(x):
+    global threshhold_lq
+    threshhold_lq = x
+
+def set_friendly(x):
+    global is_friendly, counter_max
+    is_friendly = not not x
+    counter_max = 200 #reset this to some sane value
+    counter = 0 #change it right now
+
 def set_color(r, g, b):
     global current_red, current_green, current_blue
     current_red, current_green, current_blue = r, g, b
