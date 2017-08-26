@@ -65,7 +65,7 @@ def do_show_off():
     global show_off, counter_max
     if show_off:
         #Just do a visual effect - blink reallyfast, and slow down.
-        counter_max += 1
+        counter_max += 2
         if counter_max > 150:
             show_off = False
 
