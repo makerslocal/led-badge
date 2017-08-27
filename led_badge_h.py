@@ -110,20 +110,36 @@ def receive():
 
 def receive_color(r, g, b):
     global counter_max, show_off
-    if not show_off: #Don't do it if we're not already doing it - this may not be desirable though
-        set_color(r, g, b)
-        counter_max = 5 #Increase this to decrease the amount of time it's solid after a transmit
-        show_off = True
+    set_color(r, g, b)
+    counter_max = 5 #Increase this to decrease the amount of time it's solid after a transmit
+    show_off = True
     
 def set_threshhold_lq(x):
     global threshhold_lq
     threshhold_lq = x
 
 def set_friendly(x):
-    global is_friendly, counter_max
+    global is_friendly, counter_max, counter
     is_friendly = not not x
     counter_max = 200 #reset this to some sane value
     counter = 0 #change it right now
+
+
+#LED Cube support
+def report(color):
+    if color == "orange":
+        receive_color(True, True, False)
+    elif color == "yellow":
+        receive_color(True, True, True)
+    elif color == "red":
+        receive_color(True, False, False)
+    elif color == "purple":
+        receive_color(True, False, True)
+    elif color == "blue":
+        receive_color(False, False, True)
+    elif color == "green":
+        receive_color(False, True, False)
+
 
 def set_color(r, g, b):
     global current_red, current_green, current_blue
