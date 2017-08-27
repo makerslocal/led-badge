@@ -75,6 +75,7 @@ def scan():
 
     if just_booted:
         set_random_color()
+        show_off = True
         just_booted = False
 
     if not is_friendly:
