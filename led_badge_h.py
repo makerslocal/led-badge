@@ -55,7 +55,7 @@ def strobe():
     else:
         counter += 1
 
-    if counter <= 10:
+    if counter <= 8: #Tweak this to increase/decrease length of pulse
         set_state(True)
     else:
         set_state(False)
