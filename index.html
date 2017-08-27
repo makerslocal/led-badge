@@ -3,13 +3,13 @@
         <link href="./app.css" rel="stylesheet" />
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                let colors = document.querySelector('.color')
+                let colors = document.querySelectorAll('.color')
 
                 colors.addEventListener('touchstart', (e) => {
                     e.target.addClass('touching')
                 })
                 colors.addEventListener('touchend', (e) => {
-                    for(let element in document.querySelector('.color')) {
+                    for(let element in document.querySelectorAll('.color')) {
                         if(element.hasClass('touched'))
                             element.removeClass('touched')
                         if(e.target == element && element.hasClass('touching'))
