@@ -10,13 +10,12 @@
                 })
                 colors.addEventListener('touchend', (e) => {
                     for(let element in document.querySelector('.color')) {
-                        element.removeClass('touched')
-                    }
-                    if(e.target.hasClass('touching'))
-                        e.target.addClass('touched')
-
-                    for(let element in document.querySelector('.color')) {
-                        element.removeClass('touching')
+                        if(element.hasClass('touched'))
+                            element.removeClass('touched')
+                        if(e.target == element && element.hasClass('touching'))
+                            e.target.addClass('touched')
+                        if(element.hasClass('touching'))
+                            element.removeClass('touching')
                     }
                 })
             })
