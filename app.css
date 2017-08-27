@@ -1,0 +1,64 @@
+body {
+    margin: 0; padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.color {
+    flex-basis: 16.66%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* Base colors */
+.red {
+    background-color: #9a3532;
+    border: 3px solid #9a3532;
+}
+.blue {
+    background-color: #35329a;
+    border: 3px solid #35329a;
+}
+.green {
+    background-color: #329a35;
+    border: 3px solid #329a35;
+}
+.yellow {
+    background-color: #aaaa35;
+    border: 3px solid #aaaa35;
+}
+.orange {
+    background-color: #9a5a15;
+    border: 3px solid #9a5a15;
+}
+.purple {
+    background-color: #8a359a;
+    border: 3px solid #8a359a;
+}
+
+/* Hover colors */
+.red:hover {
+    background-color: #ba4542;
+}
+.blue:hover {
+    background-color: #4542ba;
+}
+.green:hover {
+    background-color: #42ba45;
+}
+.yellow:hover {
+    background-color: #caca45;
+}
+.orange:hover {
+    background-color: #ba6a25;
+}
+.purple:hover {
+    background-color: #aa45ba;
+}
+
+/* Breakpoints */
+@media (min-width: 1080px) {
+    .color {
+        flex-basis: 33%;
+    }
+}
