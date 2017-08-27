@@ -1,26 +1,7 @@
 <html>
     <head>
         <link href="./app.css" rel="stylesheet" />
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                let colors = document.querySelectorAll('.color')
-
-                colors.addEventListener('touchstart', (e) => {
-                    e.target.addClass('touching')
-                })
-                colors.addEventListener('touchend', (e) => {
-                    for(let element in document.querySelectorAll('.color')) {
-                        if(element.hasClass('touched'))
-                            element.removeClass('touched')
-                        if(e.target == element && element.hasClass('touching'))
-                            e.target.addClass('touched')
-                        if(element.hasClass('touching'))
-                            element.removeClass('touching')
-                    }
-                })
-            })
-        </script>
-
+        <script src="./app.js" type="text/javascript"></script>
     </head>
     <body>
         <button class="color green"></button>
