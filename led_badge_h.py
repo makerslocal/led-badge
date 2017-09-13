@@ -18,7 +18,7 @@ current_best_node = None
 last_best_lq = 127
 show_off = False
 threshhold_lq = 21
-is_friendly = True
+is_friendly = False
 
 @setHook(HOOK_STARTUP)
 def init():
@@ -42,7 +42,8 @@ def init():
     #    saveNvParam(11, 15) #Turn off power amp
     if loadNvParam(11) != 31:
         saveNvParam(11, 31) #Turn ON power amp
-    txPwr(1) #out of 17... seriously
+    #txPwr(1) #out of 17... seriously
+    set_friendly(False)
 
     write_color(False, False, False)
 
@@ -121,24 +122,41 @@ def set_threshhold_lq(x):
 def set_friendly(x):
     global is_friendly, counter_max, counter
     is_friendly = not not x
+    if is_friendly:
+        txPwr(1)
+    else:
+        txPwr(17)
     counter_max = 200 #reset this to some sane value
     counter = 0 #change it right now
 
 
 #LED Cube support
 def report(color):
+    global current_red, current_green, current_blue, counter
+
+    new_r, new_g, new_b = False, False, False
+
+    if is_friendly:
+        return #Don't take cube shit if we are being friendly.
+
     if color == "orange":
-        receive_color(True, True, False)
+        new_r, new_g, new_b = True, True, False
     elif color == "yellow":
-        receive_color(True, True, True)
+        new_r, new_g, new_b = True, True, True
     elif color == "red":
-        receive_color(True, False, False)
+        new_r, new_g, new_b = True, False, False
     elif color == "purple":
-        receive_color(True, False, True)
+        new_r, new_g, new_b = True, False, True
     elif color == "blue":
-        receive_color(False, False, True)
+        new_r, new_g, new_b = False, False, True
     elif color == "green":
-        receive_color(False, True, False)
+        new_r, new_g, new_b = False, True, False
+
+    if current_red == new_r and current_green == new_g and current_blue == new_b:
+        if show_off == False:
+            counter = 0 #just make it blink right now to show that we heard it.
+    else:
+        receive_color(new_r, new_g, new_b)
 
 
 def set_color(r, g, b):
