@@ -12,48 +12,48 @@ body {
 }
 
 /* Base colors */
-.red {
+#red {
     background-color: #9a3532;
     border: 3px solid #9a3532;
 }
-.blue {
+#blue {
     background-color: #35329a;
     border: 3px solid #35329a;
 }
-.green {
+#green {
     background-color: #329a35;
     border: 3px solid #329a35;
 }
-.yellow {
+#yellow {
     background-color: #aaaa35;
     border: 3px solid #aaaa35;
 }
-.orange {
+#orange {
     background-color: #9a5a15;
     border: 3px solid #9a5a15;
 }
-.purple {
+#purple {
     background-color: #8a359a;
     border: 3px solid #8a359a;
 }
 
 /* Hover colors */
-.red:hover, .red.touched {
+#red:hover, #red.touched {
     background-color: #ba4542;
 }
-.blue:hover, .blue.touched {
+#blue:hover, #blue.touched {
     background-color: #4542ba;
 }
-.green:hover, .green.touched {
+#green:hover, #green.touched {
     background-color: #42ba45;
 }
-.yellow:hover, .yellow.touched {
+#yellow:hover, #yellow.touched {
     background-color: #caca45;
 }
-.orange:hover, .orange.touched {
+#orange:hover, #orange.touched {
     background-color: #ba6a25;
 }
-.purple:hover, .purple.touched {
+#purple:hover, #purple.touched {
     background-color: #aa45ba;
 }
 
