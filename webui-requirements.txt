@@ -1,0 +1,14 @@
+apy==2.4.1
+click==6.7
+crcmod==1.7
+Flask==0.12.2
+intelhex==2.1
+itsdangerous==0.24
+Jinja2==2.9.6
+MarkupSafe==1.0
+serialwrapper==2.2.0
+snapconnect==3.7.0
+snaplayout==2.0.5
+snaplib==2.7.0
+snappy==2.8.2
+Werkzeug==0.12.2
