@@ -16,5 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.classList.remove('touching')
             }
         })
+        element.addEventListener('click', (e) => {
+            console.log(e)
+            let form = new FormData()
+            form.append('color', e.srcElement.id)
+            fetch('/color', {
+                method: 'PUT',
+                body: form
+            })
+        })
     }
 })
