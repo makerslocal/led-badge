@@ -5,6 +5,7 @@ body {
     flex-wrap: wrap;
 }
 .color {
+    margin: 0; padding: 0;
     flex-basis: 16.66%;
     box-sizing: border-box;
     cursor: pointer;
@@ -37,26 +38,31 @@ body {
 }
 
 /* Hover colors */
-.red:hover {
+.red:hover, .red.touched {
     background-color: #ba4542;
 }
-.blue:hover {
+.blue:hover, .blue.touched {
     background-color: #4542ba;
 }
-.green:hover {
+.green:hover, .green.touched {
     background-color: #42ba45;
 }
-.yellow:hover {
+.yellow:hover, .yellow.touched {
     background-color: #caca45;
 }
-.orange:hover {
+.orange:hover, .orange.touched {
     background-color: #ba6a25;
 }
-.purple:hover {
+.purple:hover, .purple.touched {
     background-color: #aa45ba;
 }
 
 /* Breakpoints */
+@media (min-width: 375px + 1) {
+    .color {
+        flex-basis: 16.66%;
+    }
+}
 @media (min-width: 1080px) {
     .color {
         flex-basis: 33%;
