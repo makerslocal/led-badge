@@ -18,7 +18,13 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         element.addEventListener('click', function(e) {
             console.log(e)
-            let form = new FormData()
+
+            var xhr = new XMLHttpRequest()
+            xhr.open('PUT', '/color', true)
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            xhr.send('color=' + e.srcElement.id)
+
+            var form = new FormData()
             form.append('color', e.srcElement.id)
             fetch('/color', {
                 method: 'PUT',
