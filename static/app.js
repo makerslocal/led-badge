@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     colors = document.querySelectorAll('.color')
 
     for(let element of colors) {
-        element.addEventListener('touchstart', (e) => {
+        element.addEventListener('touchstart', function(e) {
             e.target.classList.add('touching')
         })
-        element.addEventListener('touchend', (e) => {
+        element.addEventListener('touchend', function(e) {
             for(let element of colors) {
                 if(element.classList.contains('touched'))
                     element.classList.remove('touched')
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.classList.remove('touching')
             }
         })
-        element.addEventListener('click', (e) => {
+        element.addEventListener('click', function(e) {
             console.log(e)
-            let form = new FormData()
+            var form = new FormData()
             form.append('color', e.srcElement.id)
             fetch('/color', {
                 method: 'PUT',
